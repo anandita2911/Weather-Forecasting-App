@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:weather/Worker/worker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:weather/Worker/worker.dart';
+import 'package:weather/Activity/location.dart';
 class Loading extends StatefulWidget {
   const Loading({Key? key}) : super(key: key);
 
@@ -9,6 +12,8 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+
+
   String temp="";
   String hum="";
   String air_speed="";
@@ -17,20 +22,27 @@ class _LoadingState extends State<Loading> {
   String icon="";
   String city="Indore";
 
+
+
+
+
+
   void startApp(String city) async{
+
+
+
+
+
     worker instance = worker(location: city);
-    bool success = await instance.getData();
-    if(success){
+    await instance.getData();
       temp=instance.temp;
       hum=instance.humidity;
       air_speed=instance.air_speed;
       des= instance.description;
       main= instance.main;
       icon= instance.icon;
-    }
-    else{
-      print("Data Retrieval failed");
-    }
+
+
 
     Future.delayed(Duration(seconds:3),(){
       Navigator.pushReplacementNamed(context, '/home', arguments:{
@@ -43,8 +55,10 @@ class _LoadingState extends State<Loading> {
         "city_value": city,
       });
 
+
     });
   }
+
 
   @override
   void initState(){
@@ -62,33 +76,36 @@ class _LoadingState extends State<Loading> {
 
     startApp(city);
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset("images/logo-fotor-bg-remover-20230528165524.png", height:240,width:240),
-            SizedBox(height:10),
-            Text("Weather App",
-            style: TextStyle(
-              fontSize: 35,
-              fontWeight: FontWeight.w800,
-                color:Colors.white
-            ),),
-            SizedBox(height: 15,),
-            Text("Made by Anandita",
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(height:180,),
+              Image.asset("images/logo-fotor-bg-remover-20230528165524.png", height:240,width:240),
+              SizedBox(height:10),
+              Text("Weather App",
               style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
+                fontSize: 35,
+                fontWeight: FontWeight.w800,
                   color:Colors.white
               ),),
-            SizedBox(height: 30,),
-        SpinKitSpinningLines(
-          color: Colors.white,
-          size: 60.0,
-        ),
+              SizedBox(height: 15,),
+              Text("Made by Anandita",
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                    color:Colors.white
+                ),),
+              SizedBox(height: 30,),
+          SpinKitSpinningLines(
+            color: Colors.white,
+            size: 60.0,
+          ),
 
-          ],
-        )
+            ],
+          )
+        ),
       ),
       backgroundColor: Colors.blue[300],
     );

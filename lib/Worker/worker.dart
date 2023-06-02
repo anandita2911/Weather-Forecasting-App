@@ -15,8 +15,10 @@ class worker{
   String main="";
   String icon="";
 
+
+
   //method=
-  Future<bool> getData() async {
+  Future<void> getData() async {
 
     try{
       Response response = await get(Uri.parse(
@@ -46,18 +48,16 @@ class worker{
       description=getDesc;
       main= getMain_des;
       icon= weather_main_data["icon"].toString();
-      return true;
     } catch(e)
     {
-      temp="Can't find data ";
-      humidity="Can't find data ";
-      air_speed="Can't find data ";
-      description="Can't find data ";
-      main="Can't find data ";
-      icon="03n";
-      return false;
+      temp="NA ";
+      humidity="NA";
+      air_speed="NA";
+      description="NA";
+      main="NA";
+      icon="09d";
 
     }
 
   }
-}
+} 
