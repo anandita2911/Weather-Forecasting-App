@@ -1,6 +1,7 @@
 # weather
 
-A new Flutter project.
+Weather App in Flutter that finds out the live weather data in the current location of the deviceas well as the weather for any city you cant think of!
+API - Open Weather Map
 
 ## Getting Started
 
