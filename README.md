@@ -1,4 +1,4 @@
-# weather
+# Weather App
 
 WWelcome to my Weather App built with Flutter! This app provides you with real-time weather information using data from the OpenWeatherMap API. With an intuitive user interface and live location feature, you can quickly check the weather conditions anywhere in the world.
 
